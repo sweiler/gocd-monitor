@@ -21,11 +21,11 @@ const styles = {
     marginBottom: '1rem'
   },
   cardActive: {
-    background: Colors.lightBlueA700,
+    background: Colors.yellowA700,
     marginBottom: '1rem'
   },
   cardInactive: {
-    background: Colors.yellowA700,
+    background: Colors.lightBlueA700,
     marginBottom: '1rem'
   },
   cardContainer: {
