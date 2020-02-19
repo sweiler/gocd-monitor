@@ -64,17 +64,15 @@ export default class GoBuildService {
    * }
    */
   getPipelinesPauseInfo() {
-    const options = Util.createRequestOptions(`${this.conf.serverUrl}/go/api/dashboard`, this.conf, true, {'Accept' : 'application/vnd.go.cd.v1+json'});
+    const options = Util.createRequestOptions(`${this.conf.serverUrl}/go/api/dashboard`, this.conf, true, {'Accept' : 'application/vnd.go.cd.v3+json'});
 
     return rp(options)
       .then((res) => {
         // Return map with pipeline name as key.
-        return res._embedded.pipeline_groups.reduce((acc, curr) => {
-          curr._embedded.pipelines.forEach((cp) => {
+        return res._embedded.pipelines.reduce((acc, cp) => {
             acc[cp.name] = cp.pause_info;
-          });
-          return acc;
-        }, {});
+            return acc;
+          }, {});
       })
       .catch((err) => {
         Logger.error('Failed to retrieve pipeline pause information');
@@ -107,11 +105,15 @@ export default class GoBuildService {
    *        name: 'Test',
    *        status: 'building'
    *        jobresults: []
-   *      }] 
+   *      }]
    * }
    */
   getPipelineHistory(name) {
-    const options = Util.createRequestOptions(`${this.conf.serverUrl}/go/api/pipelines/${name}/history/0`, this.conf, true);
+    const options = Util.createRequestOptions(
+            `${this.conf.serverUrl}/go/api/pipelines/${name}/history`,
+            this.conf,
+            true,
+            {'Accept': 'application/vnd.go.cd.v1+json'});
 
     return rp(options)
       .then(res => GoPipelineParser.parsePipelineResult(res.pipelines.slice(0, 5)))
