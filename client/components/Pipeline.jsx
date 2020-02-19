@@ -193,7 +193,6 @@ export default class Pipeline extends React.Component {
         style = styles.cardCancelled;
         break;
     }
-<<<<<<< HEAD
 
     let buildStatus = status;
 
@@ -223,31 +222,6 @@ export default class Pipeline extends React.Component {
               <i className="mdi mdi-worker mdi-24px"></i>
               <span>{status === 'paused' ? pipeline.pauseinfo.paused_by : pipeline.author}</span>
             </p>
-=======
-    return (
-      <Card style={style} containerStyle={styles.cardContainer}>
-        <CardHeader
-          className="buildtitle"
-          titleStyle={styles.cardTitle}
-          subtitle={status}
-          subtitleStyle={styles.cardSubTitle}>
-          <i className={'mdi-weather-' + this.weatherIcon(pipeline) + ' mdi mdi-48px buildstatus'}></i>
-        </CardHeader>
-        <div style={styles.bigTitle}>{pipeline.name}</div>
-        <CardText>
-          <div className="buildinfo">
-            <div className="col-xs-6">
-              <p>
-                <i className="mdi mdi-clock mdi-24px"></i>
-                <span>{ pipeline.timeago }</span>
-              </p>
-              <p>
-                <i className="mdi mdi-worker mdi-24px"></i>
-                <span>{status === 'paused' ? pipeline.pauseinfo.paused_by : pipeline.author}</span>
-              </p>
-            </div>
-            {stages}
->>>>>>> origin/master
           </div>
           {stages}
         </div>
